@@ -1,0 +1,395 @@
+
+# -*- coding: utf-8 -*-
+"""
+Module implementing MainWindow.
+"""
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import *
+from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QMessageBox  
+from PyQt5.QtWidgets import QLineEdit,QInputDialog
+ 
+from PyQt5.QtGui import QPixmap
+ 
+from Ui_Eric20180524py_gui import Ui_MainWindow
+from PyQt5.QtWidgets import QDialog
+from Ui_Eric20180525Info import Ui_dialog
+ 
+import webbrowser
+from PyQt5.Qt import QSplashScreen
+ 
+import time
+ 
+class dialog(QDialog, Ui_dialog):
+    """
+    Class documentation goes here.
+    """
+    def __init__(self, parent=None):
+        """
+        Constructor
+         
+        @param parent reference to the parent widget
+        @type QWidget
+        """
+        super(dialog, self).__init__(parent)
+        self.setupUi(self)
+     
+    @pyqtSlot()
+    def on_pushButton_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        my_str=self.lineEdit.text()      #获取单行文本框的内容
+        my_str_2=self.lineEdit_2.text()
+        my_str_3=self.lineEdit_3.text()
+        my_str_4=self.lineEdit_4.text()
+         
+        print(my_str, my_str_2, my_str_3, my_str_4)
+        Button1_1=QMessageBox.information(self, u'提示信息框', u'输入的s所有信息已经存储到数据库中！', ) #提示对话信息框
+        print('OK')
+        self.close() #关闭当前界面
+ 
+     
+    @pyqtSlot()
+    def on_pushButton_2_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        print('Cancel')
+ 
+ 
+ 
+ 
+ 
+class MainWindow(QMainWindow, Ui_MainWindow):
+    """
+    Class documentation goes here.
+    """
+    def __init__(self, parent=None):
+        """
+        Constructor
+        自动导入两个类：Ui_MainWindow、MainWindow
+        两个方法：初始化方法、setupUi方法
+        @param parent reference to the parent widget
+        @type QWidget
+        """
+        super(MainWindow, self).__init__(parent)
+        self.setupUi(self)
+        self.graphicsView.mousePressEvent=self.my_clicked
+        time.sleep(2) #使开机画面停留2秒
+         
+    def my_clicked(self, e):
+        print('自定义的点击事件函数')
+        webbrowser.open('www.baidu.com') #默认浏览器打开指定网址
+ 
+    @pyqtSlot()
+    def on_pushButton_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        print(self.textBrowser.toPlainText()) #获取多行文本框得内容
+     
+    @pyqtSlot()
+    def on_pushButton_2_clicked(self):
+        """
+        Slot documentation goes here.
+        这是测试按钮的槽函数
+        """
+        self.lineEdit.setText( "")  #清除单行文本框内容
+        self.lineEdit_2.setText( "")
+        self.textBrowser.setText( "") #清除多行文本框内容
+        print("清除登陆账号信息！")
+     
+    @pyqtSlot()
+    def on_pushButton_3_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        my_str=self.lineEdit.text()+":"+self.lineEdit_2.text() #获取单行文本框的内容
+        self.textBrowser.append(my_str) #向多行文本添加内容
+        print(my_str)
+        Button3=QMessageBox.information(self, u'提示信息框', u'输入的账号和密码已经存储到数据库中！', )
+         
+    @pyqtSlot()
+    def on_pushButton_4_clicked(self):
+        """
+        Slot documentation goes here.
+        该按钮命令调用的预定义的函数，退出的命令
+        """
+ 
+    @pyqtSlot()
+    def on_pushButton_5_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        Button5=QMessageBox.question(self, u'提示信息框', u'是否全部保存到数据库中？')
+        if Button5==0:
+            print('全部保存中……')
+        else:
+            print('没有保存')
+             
+         
+    @pyqtSlot()
+    def on_pushButton_6_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        Button6=QMessageBox.warning(self, u'提警告信息框', u'没有警告信息，请继续输入！')
+         
+    @pyqtSlot()
+    def on_pushButton_7_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        Button7=QMessageBox.critical(self, u'严重警告！', u'没有严重警告信息，请继续输入！')
+         
+    @pyqtSlot()
+    def on_pushButton_8_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        Button8=QMessageBox.about(self, u'AI简介', u'AI更多知识，可以百度《一个处女座的程序猿》查看相关CSDN博客……')
+ 
+    @pyqtSlot()
+    def on_pushButton_9_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        self.graphicsView.setStyleSheet("border-image: url(:/im/image/AI (4).jpg);")
+         
+         
+ 
+  
+#    @pyqtSlot(QUrl)
+    def on_textBrowser_anchorClicked(self, p0):
+        """
+        Slot documentation goes here.
+         
+        @param p0 DESCRIPTION
+        @type QUrl
+        """
+ 
+    @pyqtSlot()
+    def on_radioButton_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        print('同时选择其他三个首个radioButton')
+        self.radioButton_12.setChecked(True)
+        self.radioButton_16.setChecked(True)
+        self.radioButton_20.setChecked(True)
+        self.label_4.setStyleSheet("border-image: url(:/im/image/AI (4).jpg);")
+     
+    @pyqtSlot()
+    def on_radioButton_2_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+     
+    @pyqtSlot()
+    def on_radioButton_4_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+         
+     
+    @pyqtSlot()
+    def on_radioButton_3_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+ 
+     
+    @pyqtSlot()
+    def on_radioButton_12_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+ 
+     
+    @pyqtSlot()
+    def on_radioButton_13_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+ 
+     
+    @pyqtSlot()
+    def on_radioButton_14_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+ 
+     
+    @pyqtSlot()
+    def on_radioButton_15_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+ 
+     
+    @pyqtSlot()
+    def on_radioButton_16_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+ 
+     
+    @pyqtSlot()
+    def on_radioButton_17_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        self.label_4.setStyleSheet("border-image: url(:/im/image/Bigdata.jpg);")
+         
+ 
+     
+    @pyqtSlot()
+    def on_radioButton_18_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+ 
+     
+    @pyqtSlot()
+    def on_radioButton_19_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        self.label_4.setStyleSheet("border-image: url(:/im/image/Iot.jpg);")
+ 
+     
+    @pyqtSlot()
+    def on_radioButton_20_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+ 
+     
+    @pyqtSlot()
+    def on_radioButton_21_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+ 
+     
+    @pyqtSlot()
+    def on_radioButton_22_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+ 
+     
+    @pyqtSlot()
+    def on_radioButton_23_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+     
+    @pyqtSlot(int)
+    def on_dial_valueChanged(self, value):
+        """
+        Slot documentation goes here.
+         
+        @param value DESCRIPTION
+        @type int
+        """
+        self.lcdNumber.display(value)
+        print(value)
+ 
+    @pyqtSlot(int)
+    def on_horizontalSlider_valueChanged(self, value):
+        """
+        Slot documentation goes here.
+         
+        @param value DESCRIPTION
+        @type int
+        """
+        self.lcdNumber.display(value)
+     
+    @pyqtSlot(int)
+    def on_verticalSlider_valueChanged(self, value):
+        """
+        Slot documentation goes here.
+         
+        @param value DESCRIPTION
+        @type int
+        """
+        self.lcdNumber.display(value)
+     
+    @pyqtSlot()
+    def on_pushButton_10_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        #会返回两个参数(输入的信息，窗体执行状态信息)
+        my_str, ok=QInputDialog.getText(self, u'String', u'输入提示', QLineEdit.Normal, u'请在此处输入你的名字')
+        print(my_str)
+        self.textBrowser.append('NAME'+':'+my_str) #向多行文本添加内容
+     
+    @pyqtSlot()
+    def on_pushButton_11_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        #QInputDialog.getInteger    QInputDialog.getInteger
+        my_str, ok=QInputDialog.getInt(self, u'Int', u'请在此处输入你的年龄', 30, 0 ,100) #默认显示30
+        print(my_str)
+        self.textBrowser.append('AGE'+':'+str(my_str)) #向多行文本添加内容
+ 
+     
+    @pyqtSlot()
+    def on_pushButton_12_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        my_str, ok=QInputDialog.getDouble(self, u'Int', u'请在此处输入你的年薪(以万为单位)', 3.14, 0 ,100) #默认显示30
+        print(my_str)
+        self.textBrowser.append('SALARY'+':'+str(my_str)) #向多行文本添加内容
+         
+         
+    @pyqtSlot()
+    def on_pushButton_13_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        my_list=['Facebook', 'Google']
+        my_list.append(u'阿里巴巴')
+        my_list.append(u'腾讯')
+        my_list.append(u'百度')
+        my_str, ok=QInputDialog.getItem(self, u'Dropdown box',u'请选择你想进入的公司', my_list )
+        self.textBrowser.append('COMPANY'+':'+my_str) #向多行文本添加内容
+ 
+    @pyqtSlot()
+    def on_pushButton_14_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        my_info=dialog()
+        my_info.exec_()
+         
+  
+         
+         
+         
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+     
+    #加载启动画面
+    splash=QSplashScreen(QPixmap(":/im/image/AI (4).jpg")) #QSplashScreen启动界面
+    splash.show()
+    splash.showMessage(u'正在加载初始界面……',Qt.AlignCenter,Qt.yellow) #设置文字在正中央
+    time.sleep(2)
+    splash.showMessage(u'正在加载音频资源……',Qt.AlignCenter,Qt.red)
+    time.sleep(2)
+    splash.showMessage(u'正在渲染界面……',Qt.AlignCenter,Qt.blue)
+    time.sleep(2)
+     
+    app.processEvents()  #防止加载的图片卡死启动
+ 
+    ui = MainWindow()
+    splash.finish(ui) #在主窗口下，启动画面结束
+    ui.show()
+    sys.exit(app.exec_())
