@@ -1,0 +1,11 @@
+先从github下载两个文件夹
+https://github.com/matterport/Mask_RCNN
+https://github.com/philferriere/cocoapi
+Mask_RCNN-master、Mask_RCNN-master\cocoapi-master，
+然后下载三个程序Anacuda、.net4.6.1、VS2015，已经有Anacuda和VS2015的略过即可
+
+进入到F:\File Jupyter\Mask_RCNN-master\cocoapi-master\PythonAPI，然后cmd，输入以下两个命令
+python setup.py build_ext --inplace  #下载pycocotools到本地文件
+python setup.py build_ext install    #下载pycocotools模块到python的包内
+
+打开Mask_RCNN-master\samples\demo.ipynb运行即可
