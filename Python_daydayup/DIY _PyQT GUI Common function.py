@@ -67,9 +67,8 @@ self.movie01.start()                  #开始播放，对应的是movie.start()
 
 
 self.graphicsView.setStyleSheet("border-image: url(:/im/image/AI (4).jpg);")   #显示图片或更改图片
-pixmap = QPixmap ("Resources/BigD (1).jpg")
-self.label_26.setPixmap (pixmap)           # 在label上显示图片
-self.label_26.setScaledContents (True)     #让图片自适应label大小
+self.label_26.setPixmap (QPixmap ("Resources/BigD (1).jpg"))   # 在label上显示图片
+self.label_26.setScaledContents (True)  # 让图片自适应label大小
 self.label_26.setPixmap(QPixmap(""))       #移除label上的图片
 
 
