@@ -37,7 +37,8 @@ def on_dial_valueChanged(self, value):   #lcdNumber控件显示数值
     print(value)
 def on_horizontalSlider_valueChanged(self, value):
     self.lcdNumber.display(value)
-    
+
+
 
 3、控件及其属性
 my_str=self.lineEdit.text()             #获取单行文本框的内容
@@ -56,6 +57,14 @@ self.textBrowser.append(result1)   #向textBrowser控件多行文本框添加文
 self.lineEdit.setText( "")  #清除单行文本框lineEdit内容
 self.textEdit_3.setText("") #清除多行文本框textEdit_3内容
 
+PyQT界面上显示动态GIF图片
+self.movie01 = QtGui.QMovie("Resources/robot.gif") 
+self.movie01.setCacheMode(QtGui.QMovie.CacheAll)    #CacheNone #设置cacheMode为CacheAll时表示gif无限循环，注意此时loopCount()返回-1      
+self.movie01.setSpeed(100)            #播放速度
+self.label_26.setMovie(self.movie01)  #self.movie_screen是在qt designer里定义的一个QLabel对象的对象名，将gif显示在label上
+self.movie01.start()                  #开始播放，对应的是movie.start() 
+#movie.stop() #停止图片显示
+
 
 self.graphicsView.setStyleSheet("border-image: url(:/im/image/AI (4).jpg);")   #显示图片或更改图片
 pixmap = QPixmap ("Resources/BigD (1).jpg")
@@ -70,7 +79,6 @@ sys.exit(0) #退出系统
 
 
 5、GUI常用其他
-
 spk.Speak(u"欢迎访问我的CSDN博客，谢谢！") 
 
 
