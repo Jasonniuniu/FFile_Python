@@ -57,6 +57,13 @@ self.lineEdit.setText( "")  #清除单行文本框lineEdit内容
 self.textEdit_3.setText("") #清除多行文本框textEdit_3内容
 
 
+self.graphicsView.setStyleSheet("border-image: url(:/im/image/AI (4).jpg);")   #显示图片或更改图片
+pixmap = QPixmap ("Resources/BigD (1).jpg")
+self.label_26.setPixmap (pixmap)           # 在label上显示图片
+self.label_26.setScaledContents (True)     #让图片自适应label大小
+self.label_26.setPixmap(QPixmap(""))       #移除label上的图片
+
+
 4、GUI常用函数
 sys.exit(0) #退出系统
 
