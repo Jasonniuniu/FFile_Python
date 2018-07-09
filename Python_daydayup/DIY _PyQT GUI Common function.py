@@ -41,6 +41,7 @@ def on_horizontalSlider_valueChanged(self, value):
 
 3、控件及其属性
 my_str=self.lineEdit.text()             #获取单行文本框的内容
+word =self.textEdit.toPlainText()   #获取textEdit多行文本框的内容
 my_str=self.textBrowser.toPlainText()   #获取textBrowser控件文本框的内容
 
 
