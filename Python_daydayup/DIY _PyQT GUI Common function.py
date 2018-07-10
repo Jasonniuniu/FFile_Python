@@ -95,3 +95,76 @@ print(GetNowTime())
 self.label_24.setText(GetNowTime())
 
 
+2、Python多线程实例：采用自定义一个类，继承该模块，重写run的方法
+import threading
+# import queue as Queue
+from time import sleep, ctime
+
+class MyThread(threading.Thread):  #自定义多线程的类
+    def __init__(seLf, func, args, name=''): #对类进行初始化
+        threading.Thread.__init__(seLf)  
+        seLf .name=name                  #传递三个参数
+        seLf.func=func
+        seLf.args=args 
+        
+        self.thread_flag=0  #线程初始标记为0
+        self.start_flag=1
+        
+    def getresult(seLf):  #获得结果
+        return self.res
+        
+    def run(self):        #重写run方法
+        print ('staring', self.name, 'at:', ctime())  #标记类运行初始时间
+        self.res=self.func(self.args)   #python2中的用法，apply(self.func, self.args)
+        print( self.name, 'finished at:', ctime())   #标记类运行结束时间
+
+#1、主窗口中还要继承这个threading.Thread类：
+#2、然后初始化父类
+#3、定义run方法
+#4、主方法中开启线程，即调用threading.Thread的start方法即可
+#class MainWindow(QMainWindow, Ui_MainWindow)  1、主窗口中还要继承这个threading.Thread类：
+class MainWindow(QMainWindow, Ui_MainWindow, threading.Thread):  
+    def __init__(self, parent=None):
+        super(MainWindow, self).__init__(parent)
+        threading.Thread.__init__(self)       #2、然后初始化父类
+
+    def run(self):  #3、定义run方法
+        print ('staring', self.name, 'at:', ctime())  
+        self.res=self.my_record()  #self.func换为需要多线程的函数，比如my_record()让录音先一直运行
+        #self.res=self.my_record(*self.args)     #需要传递参数时的用法，python3中
+        print( self.name, 'finished at:', ctime())
+    def audio2txt(self, token):   #get_word(token)
+        pass
+    
+    @pyqtSlot()
+    def on_pushButton_20_clicked(self):
+        
+        #设计第二个线程：通过点击按钮20启动，点击按钮19结束线程
+        if self.thread_flag==0:  #如果没有开启线程，就
+            self.start_flag=1    #线程标记开始
+            
+            #识别程序在上边的主类中实现(且一直在识别)，而这个线程开启的是录音
+            record_t=MyThread(self.my_record, (self,), self.my_record.__name__)  #开启线录音线程，record_t=MyThread(开启线程的函数, 传递的第一个参数, ui.audio2txt.__name__)
+            record_t.setDaemon(True)#进程随之结束
+            record_t.start()    #进程随之结束
+            self.thread_flag=1  #标记为1，为本线程结束做标记，目的是通知其他线程可以开启
+            
+    @pyqtSlot()
+    def on_pushButton_19_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        if self.thread_flag==1:  #如果得到信息通知，线程开启,，就关闭掉，将其他标记变量归零
+            self.start_flag=0    #标记变量归零
+            self.thread_flag=0   #线程标记变量归零
+
+if __name__ == "__main__":  
+    ui = MainWindow() 
+    
+    #设计第一个线程
+    ui.setDaemon(True)  #线程开启之前设置属性。因为ui.start()是子线程，我们要让这个子线程，随着父线程结束而结束
+    ui.start()          #开启线程(此时self.my_record()函数会起作用)。因Ui已继承threading.Thread，故可直接调用线程thread中的start方法。
+    #self.my_record()函数会一直运行，直到等父线程结束才结束
+    
+    ui.show()  
+        
