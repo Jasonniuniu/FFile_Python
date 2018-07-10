@@ -86,7 +86,12 @@ PyQt5：PyQt5常用控件、函数、简单案例总结
 https://blog.csdn.net/qq_41185868/article/details/80457932
 PyQt之GUI界面：基于QtGUI界面编程的控件简介、槽函数使用详细攻略
 https://blog.csdn.net/qq_41185868/article/details/80426721
-1、
 
+1、利用time库自定义一个获取系统当前时间的函数，并传递给label控件去显示
+import time
+def GetNowTime(): #获取系统当前时间，格式2018-07-10 09:22:41
+    return time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
+print(GetNowTime())
+self.label_24.setText(GetNowTime())
 
 
