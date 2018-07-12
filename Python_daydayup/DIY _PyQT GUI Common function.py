@@ -1,5 +1,7 @@
 一、PyQt使用基础
 1、各种框框
+from PyQt5.QtWidgets import QMessageBox 
+
 Button8=QMessageBox.about(self, u'AI简介', u'AI更多知识，可以百度《一个处女座的程序猿》查看相关CSDN博客……')   #关于信息提示框
 Button1_1=QMessageBox.information(self, u'对话提示信息框', u'输入的s所有信息已经存储到数据库中！', )         #对话信息提示框
 
