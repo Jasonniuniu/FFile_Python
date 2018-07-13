@@ -42,6 +42,7 @@ def dramaticTyping(string):
        sys.stdout.write(char)
        sys.stdout.flush()
        time.sleep(0.04)
+          
 
 #对列表取值生成统计图的两个函数
 def list_count(list): #实现根据输入的列表，统计列表各元素个数生成字典，并返回字典的Keys,Values
@@ -64,7 +65,7 @@ def list_count(list): #实现根据输入的列表，统计列表各元素个数
     print(Keys)
     print(Values)
     return Keys,Values
-def draw(Keys,Values):  #实现根据输入的Keys,Values生成相应的柱状图、圆饼图
+def draw(Keys,Values,title,xlabel,ylabel):  #实现根据输入的Keys,Values生成相应的柱状图、圆饼图
     import matplotlib.pyplot as plt
     import numpy as np  
     import matplotlib.mlab as mlab  
@@ -76,25 +77,30 @@ def draw(Keys,Values):  #实现根据输入的Keys,Values生成相应的柱状�
     plt.rcParams['font.sans-serif']=['SimHei']  #手动添加中文字体，
     
     plt.bar(X,Y,0.5,color="green")  #0.5是指柱状的宽度比例
-    plt.xlabel("地区分布")
-    plt.ylabel("统计个数")
-    title01="现场人员地区分布个数——Jason Niu"
-    plt.title(title01)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    
+    plt.title(title)
     plt.show()  
     
     #绘制圆饼图
-    explode=0,0.1,0,0   #逆时针顺序，第几个分离
+    #explode=[0,0.1,0,0]   #逆时针顺序，第几个分离
+    explode_list=[0]*(len(Keys)-1)
+    explode_list.append(0.1)
+    print(explode_list)
     colors='yellowgreen','gold','lightskyblue','lightcoral'
     
-    plt.pie(Values,explode=explode,labels=Keys,colors=colors,autopct='%1.1f%%',shadow=True,startangle=50)
+    plt.pie(Values,explode=explode_list,labels=Keys,colors=colors,autopct='%1.1f%%',shadow=True,startangle=50)
     plt.axis('equal')
-    plt.title(title01)
+    plt.title(title)
     plt.show()   
-
 list=['America', 'America', '山东', '山东', '吉林', '山东', '上海', '上海']
 print(list.count("山东")) #计算列表指定元素的个数
 Keys,Values=list_count(list)
-draw(Keys,Values)
+title="现场人员地区分布个数——Jason Niu"
+xlabel="地区分布"
+ylabel="人数统计"
+draw(Keys,Values,title,xlabel,ylabel)
 
 
 
