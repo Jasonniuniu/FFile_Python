@@ -8,6 +8,8 @@ def niu_read_docx(filename):
      return '\n'.join(fulltext)
 self.textBrowser.append(niu_read_docx(my_file_path)) #添加到显示的多行文本控件上
 
+
+
 #局部变量变为全局变量的方法
 改变之前
     def on_pushButton_clicked(self):
@@ -32,7 +34,9 @@ self.textBrowser.append(niu_read_docx(my_file_path)) #添加到显示的多行�
         """
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-     
+ 
+
+
 #对输出的文字加一个个蹦出特效：类似在电影字幕中的字母会一个一个的蹦出来，即将dramaticTyping函数代替print函数
 import time
 import sys
@@ -42,7 +46,8 @@ def dramaticTyping(string):
        sys.stdout.write(char)
        sys.stdout.flush()
        time.sleep(0.04)
-          
+  
+
 
 #对列表取值生成统计图的两个函数
 def list_count(list): #实现根据输入的列表，统计列表各元素个数生成字典，并返回字典的Keys,Values
@@ -103,5 +108,48 @@ ylabel="人数统计"
 draw(Keys,Values,title,xlabel,ylabel)
 
 
+
+#2Dbar graphs in different planes
+def twoD_in_different_planes(xs,ys,Xlabel,Ylabel,Zlabel,title):
+    from mpl_toolkits.mplot3d import Axes3D
+    import matplotlib.pyplot as plt
+    import numpy as np
+    
+    np.random.seed() #19680801 Fixing random state for reproducibility
+    
+    fig = plt.figure()
+    plt.rcParams['font.sans-serif']=['SimHei']  #手动添加中文字体，
+    ax = fig.add_subplot(111, projection='3d')
+    
+    colors = ['r', 'g', 'b', 'y']
+    yticks = [3, 2, 1, 0]
+    for c, k in zip(colors, yticks):
+        # Generate the random data for the y=k 'layer'.
+#         xs01 = np.arange(20)
+#         ys01 = np.random.rand(20)
+
+        # You can provide either a single color or an array with the same length as
+        # xs and ys. To demonstrate this, we color the first bar of each set cyan.
+        cs = [c] * len(xs)
+        cs[0] = 'c'
+    
+        # Plot the bar graph given by xs and ys on the plane y=k with 80% opacity.
+        ax.bar(xs, ys, zs=k, zdir='y', color=cs, alpha=0.8)
+    ax.set_xlabel(Xlabel)
+    ax.set_ylabel(Ylabel)
+    ax.set_zlabel(Zlabel)
+
+    # On the y axis let's only label the discrete values that we have data for.
+    ax.set_yticks(yticks)
+    plt.title(title)
+    plt.show()  
+xs=['AndrewNg', 'Elon Musk', 'Jason Niu', '牛魔王', '李笑来', '胡歌', '江疏影']
+ys=[1, 1, 1, 2, 1, 1, 1]
+Xlabel="Name"
+Ylabel="Different layers"
+Zlabel="Statistical number"
+
+title="2Dbar graphs in different planes"
+twoD_in_different_planes(xs,ys,Xlabel,Ylabel,Zlabel,title)
 
 
