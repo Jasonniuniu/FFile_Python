@@ -109,7 +109,7 @@ draw(Keys,Values,title,xlabel,ylabel)
 
 
 
-#2Dbar graphs in different planes
+#类3D绘图：2Dbar graphs in different planes
 def twoD_in_different_planes(xs,ys,Xlabel,Ylabel,Zlabel,title):
     from mpl_toolkits.mplot3d import Axes3D
     import matplotlib.pyplot as plt
