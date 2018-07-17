@@ -153,3 +153,25 @@ title="2Dbar graphs in different planes"
 twoD_in_different_planes(xs,ys,Xlabel,Ylabel,Zlabel,title)
 
 
+#查找names列表中的重复元,只输出有重复的元素、及其重复元素对应不同的索引值
+def list_dup(names):
+    from collections import defaultdict
+    def list_dup_nameAndindexs(names):
+        tally = defaultdict(list)  #defaultdict类就好像是一个dict，但是它是使用一个类型来初始化的
+        for i,item in enumerate(names):
+            tally[item].append(i) 
+        return ( (key,locs) for key,locs in tally.items() if len(locs)>1 )
+    dup_list=sorted(list_dup_nameAndindexs(addresss)) 
+    #print(dup_list)
+    
+    #for循环获取list_dup_nameAndindexs中的name并存为一个列表
+    dup_names=[]
+    for a in dup_list:
+        dup_names.append(a[0])
+    #print(dup_names)
+    return dup_names,dup_list
+
+addresss=['汕头', '杭州', '周口', '广元', '佛山', '佛山', '上海', '宁波', '东莞', '台州', '仙桃', '阳泉', '安庆', '泉州', '黄冈', '宿迁', '黄冈', '常州', '杭州', '潮州', '东阳', '淮安', '重庆', '廊坊', '威海', '黄石', '北京', '成都', '保定', '上海', '佛山', '绍兴']
+dup_names,dup_list=list_dup(addresss)
+print(dup_names,dup_list)
+['上海', '佛山', '杭州', '黄冈'] [('上海', [6, 29]), ('佛山', [4, 5, 30]), ('杭州', [1, 18]), ('黄冈', [14, 16])]
