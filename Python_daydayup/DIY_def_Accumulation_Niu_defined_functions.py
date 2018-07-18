@@ -175,3 +175,30 @@ addresss=['汕头', '杭州', '周口', '广元', '佛山', '佛山', '上海', 
 dup_names,dup_list=list_dup(addresss)
 print(dup_names,dup_list)
 ['上海', '佛山', '杭州', '黄冈'] [('上海', [6, 29]), ('佛山', [4, 5, 30]), ('杭州', [1, 18]), ('黄冈', [14, 16])]
+
+
+#将excel表格的内容取出并存在一个列表内，返回的list是表格所有的内容，返回的list0是指第j列所有的内容
+def xls2list(data_pat,sheetnam,j):
+    import xlrd       
+    xls1 = xlrd.open_workbook(data_pat)
+    table = xls1.sheet_by_name(sheetnam)
+    #第一个for循环取出表格内文件存为list01列表中
+    list = [] 
+    list0 = [] 
+    for i in range(0,table.nrows):                                  #table.nrows输出表格的行数
+        list.append(table.row_values(i))
+        list0.append(table.row_values(i)[j])
+    return list,list0
+
+data_pat="map/AI.xlsx"
+data_path='map/The latitude and longitude tables of Chinese cities.xls'
+sheetname='Sheet1'
+j=1
+list,list0=xls2list(data_path,sheetname,j)
+
+print(list) 
+print(list0) 
+print(list0[1:])  #获取除了第一列的内容(除了第一行(列名) 以外的所有行的内容)
+
+
+
