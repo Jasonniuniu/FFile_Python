@@ -89,15 +89,14 @@ https://blog.csdn.net/qq_41185868/article/details/80457932
 PyQt之GUI界面：基于QtGUI界面编程的控件简介、槽函数使用详细攻略
 https://blog.csdn.net/qq_41185868/article/details/80426721
 
-1、利用time库自定义一个获取系统当前时间的函数，并传递给label控件去显示
-import time
-def GetNowTime(): #获取系统当前时间，格式2018-07-10 09:22:41
-    return time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
-print(GetNowTime())
-self.label_24.setText(GetNowTime())
+1、
 
 
-2、Python多线程实例：采用自定义一个类，继承该模块，重写run的方法
+
+
+
+三、其他长案例
+1、Python多线程实例：采用自定义一个类，继承该模块，重写run的方法
 import threading
 # import queue as Queue
 from time import sleep, ctime
@@ -120,10 +119,10 @@ class MyThread(threading.Thread):  #自定义多线程的类
         self.res=self.func(self.args)   #python2中的用法，apply(self.func, self.args)
         print( self.name, 'finished at:', ctime())   #标记类运行结束时间
 
-#1、主窗口中还要继承这个threading.Thread类：
-#2、然后初始化父类
-#3、定义run方法
-#4、主方法中开启线程，即调用threading.Thread的start方法即可
+#(1)、主窗口中还要继承这个threading.Thread类：
+#(2)、然后初始化父类
+#(3)、定义run方法
+#(4)、主方法中开启线程，即调用threading.Thread的start方法即可
 #class MainWindow(QMainWindow, Ui_MainWindow)  1、主窗口中还要继承这个threading.Thread类：
 class MainWindow(QMainWindow, Ui_MainWindow, threading.Thread):  
     def __init__(self, parent=None):
