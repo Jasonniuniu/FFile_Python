@@ -38,6 +38,7 @@ self.radioButton_12.setChecked(True)   #该radioButton_12按钮被选中
 webbrowser.open('www.baidu.com')       #默认浏览器打开指定网址
 self.graphicsView.setStyleSheet("border-image: url(:/im/image/AI (4).jpg);")   #采用graphicsView控件显示图片
 self.label_4.setStyleSheet("border-image: url(:/im/image/Bigdata.jpg);")       #采用label_4标签显示图片
+self.label_4.setScaledContents (True)  #使图片调整为label大小
 
 def on_dial_valueChanged(self, value):   #lcdNumber控件显示数值
     self.lcdNumber.display(value)
