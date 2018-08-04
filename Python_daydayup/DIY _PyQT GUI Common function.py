@@ -1,3 +1,8 @@
+相关文章
+PyQt5：PyQt5常用控件、属性、函数、简单案例总结
+https://blog.csdn.net/qq_41185868/article/details/80457932
+
+
 一、PyQt使用基础
 1、各种框框
 from PyQt5.QtWidgets import QMessageBox 
