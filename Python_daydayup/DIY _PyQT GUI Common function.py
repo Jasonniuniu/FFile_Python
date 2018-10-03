@@ -73,11 +73,16 @@ self.label_26.setMovie(self.movie01)  #self.movie_screen是在qt designer里定�
 self.movie01.start()                  #开始播放，对应的是movie.start() 
 #movie.stop() #停止图片显示
 
-
+Label上显示本地图片
+T1、加载定义好的图片
 self.graphicsView.setStyleSheet("border-image: url(:/im/image/AI (4).jpg);")   #显示图片或更改图片
 self.label_26.setPixmap (QPixmap ("Resources/BigD (1).jpg"))   # 在label上显示图片
 self.label_26.setScaledContents (True)  # 让图片自适应label大小
 self.label_26.setPixmap(QPixmap(""))       #移除label上的图片
+T2、加载新生成的图片
+from PyQt5.QtGui import QPixmap
+self.label.setPixmap (QPixmap ('QR.png'))
+self.label.setScaledContents (True)  #使图片调整为label大小
 
 
 4、GUI常用函数
