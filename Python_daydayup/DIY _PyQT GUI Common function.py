@@ -84,6 +84,9 @@ from PyQt5.QtGui import QPixmap
 self.label.setPixmap (QPixmap ('QR.png'))
 self.label.setScaledContents (True)  #使图片调整为label大小
 
+Label上清空已有图片
+self.label_205.setPixmap (QPixmap ('') )
+
 
 4、GUI常用函数
 sys.exit(0) #退出系统
